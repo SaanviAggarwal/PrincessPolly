@@ -1,4 +1,3 @@
-
 // salon variables
 String salonChoice = "";
 
@@ -8,8 +7,6 @@ boolean filed = false;
 boolean earnedMoney = false;
 
 color nailColor = color(255, 150, 200);
-
-
 
 void drawSalonPage()
 {
@@ -174,94 +171,6 @@ void drawPolishColors()
   fill(255, 100, 200);
   rect(900, 670, 60, 100);
 }
-
-// mouse pressed
-
-void mousePressed()
-{
- //hands 
-  if (salonChoice.equals(""))
-  {
-    // hands
-    if (mouseX > 170 && mouseX < 470 &&
-        mouseY > 210 && mouseY < 390)
-    {
-      salonChoice = "hands";
-    }
-
-    // feet
-    if (mouseX > 730 && mouseX < 1030 &&
-        mouseY > 210 && mouseY < 390)
-    {
-      salonChoice = "feet";
-    }
-  }
-
-  //clip button
-
-  if (mouseX > 190 && mouseX < 410 &&
-      mouseY > 175 && mouseY < 265)
-  {
-    clipped = true;
-  }
-
-//file button
-
-  if (mouseX > 540 && mouseX < 760 &&
-      mouseY > 175 && mouseY < 265)
-  {
-    filed = true;
-  }
-
- //colours
-
-  // RED
-  if (mouseX > 120 && mouseX < 180 &&
-      mouseY > 620 && mouseY < 720)
-  {
-    nailColor = color(255, 0, 0);
-  }
-
-  // BLUE
-  if (mouseX > 270 && mouseX < 330 &&
-      mouseY > 620 && mouseY < 720)
-  {
-    nailColor = color(0, 100, 255);
-  }
-
-  // GREEN
-  if (mouseX > 420 && mouseX < 480 &&
-      mouseY > 620 && mouseY < 720)
-  {
-    nailColor = color(0, 255, 100);
-  }
-
-  // YELLOW
-  if (mouseX > 570 && mouseX < 630 &&
-      mouseY > 620 && mouseY < 720)
-  {
-    nailColor = color(255, 255, 0);
-  }
-
-  // PURPLE
-  if (mouseX > 720 && mouseX < 780 &&
-      mouseY > 620 && mouseY < 720)
-  {
-    nailColor = color(180, 0, 255);
-  }
-
-  // PINK
-  if (mouseX > 870 && mouseX < 930 &&
-      mouseY > 620 && mouseY < 720)
-  {
-    nailColor = color(255, 100, 200);
-  }
-
-//home
-
-  if (mouseX > 975 && mouseX < 1125 &&
-      mouseY > 25 && mouseY < 75)
-  {
     println("Go Back Home");
   }
 }
