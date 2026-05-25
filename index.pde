@@ -8,6 +8,9 @@ int dayTime = 1800; // 30 minutes
 // Background + images
 PImage grassBackground;
 PImage profileIcon;
+PImage carWashBackground;
+ 
+
 
 // Store graphics
 PImage salonImg;
@@ -42,12 +45,18 @@ void setup()
   iceCreamImg = loadImage("icecream.png");
   restaurantImg = loadImage("restaurant.png");
   bedroomImg = loadImage("castle.png");
-  carWashImg = loadImage("carwash.png");
+  carWashImg = loadImage("carWash1.png");
   airportImg = loadImage("airport.png");
+  carWashBackground = loadImage("");
+    
+  drawMainPage();
+
 }
 
+void draw(){
+}
 
-void draw()
+void drawMainPage ()
 {
   background(135, 206, 235);
 
@@ -105,22 +114,23 @@ void draw()
   
  
 
-  image(salonImg, 200, 230, storeW, storeH);
+  image(salonImg, 200, 230, 200, 220);
 
-  image(petShopImg, 450, 180, storeW, storeH);
+  image(petShopImg, 450, 180,220, 220);
 
-  image(iceCreamImg, 720, 250, storeW, storeH);
+  image(iceCreamImg, 780, 250, 170, 150);
 
-  image(restaurantImg, 980, 220, storeW, storeH);
+  image(restaurantImg, 1000, 220, 275, 250);
 
-  image(bedroomImg, 620, 520, storeW, storeH);
+  image(bedroomImg, 545, 520, 175, 220);
 
-  image(carWashImg, 950, 500, storeW, storeH);
+  image(carWashImg, 950, 500, 200,175);
 
-  image(airportImg, 150, 500, storeW, storeH);
+  image(airportImg, 300, 400, 300, 250);
 
 
 }
+
 
 //mousy ( https://processing.org/reference/mouseClicked_.html) 
 void mousePressed()
@@ -134,10 +144,7 @@ void mousePressed()
 
   // stores
 
-  if (overButton(200, 230))
-  {
-    println("Go to Salon Page");
-  }
+  
 
   if (overButton(450, 180))
   {
@@ -172,6 +179,96 @@ void mousePressed()
   if (overButton(350, 480))
   {
     println("Go to Profile Customization");
+  }
+ if (mouseX > 200 && mouseX < 400 && mouseY > 230 && mouseY < 450 )
+  {
+  drawSalonPage();
+  }
+  
+  //hands 
+  if (salonChoice.equals(""))
+  {
+    // hands
+    if (mouseX > 170 && mouseX < 470 &&
+        mouseY > 210 && mouseY < 390)
+    {
+      salonChoice = "hands";
+    }
+
+    // feet
+    if (mouseX > 730 && mouseX < 1030 &&
+        mouseY > 210 && mouseY < 390)
+    {
+      salonChoice = "feet";
+    }
+  }
+
+  //clip button
+
+  if (mouseX > 190 && mouseX < 410 &&
+      mouseY > 175 && mouseY < 265)
+  {
+    clipped = true;
+  }
+
+//file button
+
+  if (mouseX > 540 && mouseX < 760 &&
+      mouseY > 175 && mouseY < 265)
+  {
+    filed = true;
+  }
+
+ //colours
+
+  // RED
+  if (mouseX > 120 && mouseX < 180 &&
+      mouseY > 620 && mouseY < 720)
+  {
+    nailColor = color(255, 0, 0);
+  }
+
+  // BLUE
+  if (mouseX > 270 && mouseX < 330 &&
+      mouseY > 620 && mouseY < 720)
+  {
+    nailColor = color(0, 100, 255);
+  }
+
+  // GREEN
+  if (mouseX > 420 && mouseX < 480 &&
+      mouseY > 620 && mouseY < 720)
+  {
+    nailColor = color(0, 255, 100);
+  }
+
+  // YELLOW
+  if (mouseX > 570 && mouseX < 630 &&
+      mouseY > 620 && mouseY < 720)
+  {
+    nailColor = color(255, 255, 0);
+  }
+
+  // PURPLE
+  if (mouseX > 720 && mouseX < 780 &&
+      mouseY > 620 && mouseY < 720)
+  {
+    nailColor = color(180, 0, 255);
+  }
+
+  // PINK
+  if (mouseX > 870 && mouseX < 930 &&
+      mouseY > 620 && mouseY < 720)
+  {
+    nailColor = color(255, 100, 200);
+  }
+
+//home
+
+  if (mouseX > 975 && mouseX < 1125 &&
+      mouseY > 25 && mouseY < 75)
+  {
+    println("Go Back Home");
   }
 }
 
