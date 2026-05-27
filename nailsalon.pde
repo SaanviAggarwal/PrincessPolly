@@ -1,4 +1,3 @@
-
 // choice
 String salonChoice = "";
 
@@ -37,23 +36,6 @@ PImage purpleBottle;
 PImage pinkBottle;
 
 
-//load images
-
-// PUT THIS INSIDE setup()
-
-handsImg = loadImage("hands.png");
-feetImg = loadImage("feet.png");
-
-nailClipperImg = loadImage("clipper.png");
-nailFileImg = loadImage("file.png");
-
-redBottle = loadImage("redBottle.png");
-blueBottle = loadImage("blueBottle.png");
-greenBottle = loadImage("greenBottle.png");
-yellowBottle = loadImage("yellowBottle.png");
-purpleBottle = loadImage("purpleBottle.png");
-pinkBottle = loadImage("pinkBottle.png");
-
 
 //draw salaon
 
@@ -89,21 +71,21 @@ void drawSalonPage()
   if (salonChoice.equals(""))
   {
     fill(255);
-    rect(320, 250, 300, 350, 20);
+    rect(320, 300, 300, 350, 20);
 
-    rect(880, 250, 300, 350, 20);
+    rect(880, 300, 300, 350, 20);
 
     // words
     fill(0);
     textSize(40);
-    text("HANDS", 320, 120);
+    text("HANDS", 320, 170);
 
-    text("FEET", 880, 120);
+    text("FEET", 880, 170);
 
     // YOUR GRAPHICS
-    image(handsImg, 320, 300, 220, 220);
+    image(handsImg, 320, 350, 220, 220);
 
-    image(feetImg, 880, 300, 220, 220);
+    image(feetImg, 880, 350, 220, 220);
 
     textSize(24);
     text("Choose One!", width/2, 620);
@@ -202,7 +184,7 @@ void drawSalonPage()
       ellipse(670, 340, 40, 70);
 
 
-      bottle image
+      //bottle image
 
       image(redBottle, 180, 620, 90, 120);
 
@@ -218,104 +200,3 @@ void drawSalonPage()
     }
   }
 }
-
-
-//mouse pressed
-
-void mousePressed()
-{
-  //pick hands
-
-  if (salonChoice.equals(""))
-  {
-    if (mouseX > 170 && mouseX < 470 &&
-        mouseY > 75 && mouseY < 425)
-    {
-      salonChoice = "hands";
-
-      taskTimer = millis();
-    }
-
-  //pick feet
-
-    if (mouseX > 730 && mouseX < 1030 &&
-        mouseY > 75 && mouseY < 425)
-    {
-      salonChoice = "feet";
-
-      taskTimer = millis();
-    }
-  }
-
- //start
-
-  if (clipped && !filed)
-  {
-    if (millis() - taskTimer > 5000)
-    {
-      taskTimer = millis();
-    }
-  }
-
- //ploish colours
-
-  if (filed)
-  {
-    // RED
-    if (mouseX > 135 && mouseX < 225 &&
-        mouseY > 560 && mouseY < 680)
-    {
-      nailColor = color(255, 0, 0);
-    }
-
-    // BLUE
-    if (mouseX > 295 && mouseX < 385 &&
-        mouseY > 560 && mouseY < 680)
-    {
-      nailColor = color(0, 100, 255);
-    }
-
-    // GREEN
-    if (mouseX > 455 && mouseX < 545 &&
-        mouseY > 560 && mouseY < 680)
-    {
-      nailColor = color(0, 255, 100);
-    }
-
-    // YELLOW
-    if (mouseX > 615 && mouseX < 705 &&
-        mouseY > 560 && mouseY < 680)
-    {
-      nailColor = color(255, 255, 0);
-    }
-
-    // PURPLE
-    if (mouseX > 775 && mouseX < 865 &&
-        mouseY > 560 && mouseY < 680)
-    {
-      nailColor = color(180, 0, 255);
-    }
-
-    // PINK
-    if (mouseX > 935 && mouseX < 1025 &&
-        mouseY > 560 && mouseY < 680)
-    {
-      nailColor = color(255, 100, 200);
-    }
-  }
-
-  //home
-  if (mouseX > 975 && mouseX < 1125 &&
-      mouseY > 25 && mouseY < 75)
-  {
-    println("GO HOME");
-
-    salonChoice = "";
-
-    clipped = false;
-    filed = false;
-
-    clipMoney = false;
-    fileMoney = false;
-  }
-} 
