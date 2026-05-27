@@ -1,3 +1,5 @@
+// ---------------- SALON VARIABLES ----------------
+
 // choice
 String salonChoice = "";
 
@@ -5,11 +7,13 @@ String salonChoice = "";
 boolean clipped = false;
 boolean filed = false;
 
-// timer
-int taskTimer = 0;
+// timers
+int clipTimer = 0;
+int fileTimer = 0;
 
-// current tool
-String currentTask = "";
+// moving tracker
+boolean clippingStarted = false;
+boolean filingStarted = false;
 
 // money reward
 boolean clipMoney = false;
@@ -18,16 +22,17 @@ boolean fileMoney = false;
 // nail color
 color nailColor = color(255, 150, 200);
 
+// ---------------- IMAGES ----------------
 
+// upload your own later
 
-// upload ymy own images later
 PImage handsImg;
 PImage feetImg;
 
 PImage nailClipperImg;
 PImage nailFileImg;
 
-// nail polish bottle images
+// nail polish bottles
 PImage redBottle;
 PImage blueBottle;
 PImage greenBottle;
@@ -36,8 +41,7 @@ PImage purpleBottle;
 PImage pinkBottle;
 
 
-
-//draw salaon
+// ---------------- DRAW SALON PAGE ----------------
 
 void drawSalonPage()
 {
@@ -66,137 +70,234 @@ void drawSalonPage()
   fill(0);
   text("HOME", 1050, 50);
 
-  //Choose hands or feet
+  // ---------------- CHOOSE HANDS OR FEET ----------------
 
   if (salonChoice.equals(""))
   {
     fill(255);
-    rect(320, 300, 300, 350, 20);
 
-    rect(880, 300, 300, 350, 20);
+    rect(320, 320, 300, 350, 20);
 
-    // words
+    rect(880, 320, 300, 350, 20);
+
+    // titles
     fill(0);
     textSize(40);
-    text("HANDS", 320, 170);
 
-    text("FEET", 880, 170);
+    text("HANDS", 320, 160);
 
-    // YOUR GRAPHICS
-    image(handsImg, 320, 350, 220, 220);
+    text("FEET", 880, 160);
 
-    image(feetImg, 880, 350, 220, 220);
+    // graphics
+    image(handsImg, 320, 340, 220, 220);
+
+    image(feetImg, 880, 340, 220, 220);
 
     textSize(24);
-    text("Choose One!", width/2, 620);
+    text("Click To Choose!", width/2, 620);
   }
 
- //gamer start
+  // ---------------- GAME START ----------------
 
   else
   {
-    fill(0);
-    textSize(28);
-//CLIP
+    // ---------------- SHOW HANDS / FEET IMAGE ----------------
+
+    if (salonChoice.equals("hands"))
+    {
+      image(handsImg, width/2, 320, 500, 350);
+    }
+
+    if (salonChoice.equals("feet"))
+    {
+      image(feetImg, width/2, 320, 500, 350);
+    }
+
+    // ---------------- CLIP TASK ----------------
 
     if (!clipped)
     {
+      fill(0);
+      textSize(30);
+
       text("MOVE THE CLIPPER FOR 5 SECONDS!", width/2, 100);
 
-      // timer
-      int secondsLeft = max(0, 5 - (millis() - taskTimer)/1000);
+      image(nailClipperImg, mouseX, mouseY, 180, 180);
 
-      text(secondsLeft, width/2, 150);
-
-      // player tool
-      image(nailClipperImg, mouseX, mouseY, 120, 120);
-
-      // after 5 seconds
-      if (millis() - taskTimer > 5000)
+      // start timer
+      if (mousePressed && !clippingStarted)
       {
-        clipped = true;
+        clipTimer = millis();
+        clippingStarted = true;
+      }
 
-        if (!clipMoney)
+      // countdown
+      if (clippingStarted)
+      {
+        int secondsLeft = max(0, 5 - (millis() - clipTimer)/1000);
+
+        text(secondsLeft, width/2, 150);
+
+        // finish task
+        if (millis() - clipTimer > 5000)
         {
-          money = money + 2;
-          clipMoney = true;
+          clipped = true;
+
+          if (!clipMoney)
+          {
+            money = money + 2;
+            clipMoney = true;
+          }
         }
       }
     }
 
-   //file
+    // ---------------- FILE TASK ----------------
 
     else if (!filed)
     {
-      text("MOVE THE NAIL FILE FOR 5 SECONDS!", width/2, 100);
+      fill(0);
+      textSize(30);
 
-      int secondsLeft = max(0, 5 - (millis() - taskTimer)/1000);
+      text("MOVE THE FILE FOR 5 SECONDS!", width/2, 100);
 
-      text(secondsLeft, width/2, 150);
+      image(nailFileImg, mouseX, mouseY, 180, 180);
 
-      image(nailFileImg, mouseX, mouseY, 120, 120);
-
-      if (millis() - taskTimer > 5000)
+      // start timer
+      if (mousePressed && !filingStarted)
       {
-        filed = true;
+        fileTimer = millis();
+        filingStarted = true;
+      }
 
-        if (!fileMoney)
+      // countdown
+      if (filingStarted)
+      {
+        int secondsLeft = max(0, 5 - (millis() - fileTimer)/1000);
+
+        text(secondsLeft, width/2, 150);
+
+        // finish task
+        if (millis() - fileTimer > 5000)
         {
-          money = money + 2;
-          fileMoney = true;
+          filed = true;
+
+          if (!fileMoney)
+          {
+            money = money + 2;
+            fileMoney = true;
+          }
         }
       }
     }
-// paint nails
+
+    // ---------------- PAINT NAILS ----------------
 
     else
     {
+      fill(0);
+      textSize(32);
+
       text("PAINT THE NAILS!", width/2, 80);
 
-      // YOUR HAND / FOOT IMAGE
-      if (salonChoice.equals("hands"))
-      {
-        image(handsImg, width/2, 300, 500, 350);
-      }
-
-      if (salonChoice.equals("feet"))
-      {
-        image(feetImg, width/2, 300, 500, 350);
-      }
-
-      //nails (PLACE THEM ON MY OWN)
+      // ---------------- NAILS ----------------
 
       fill(nailColor);
 
-      // NAIL 1
+      // nail 1
       ellipse(430, 330, 40, 70);
 
-      // NAIL 2
+      // nail 2
       ellipse(490, 300, 40, 70);
 
-      // NAIL 3
+      // nail 3
       ellipse(550, 285, 40, 70);
 
-      // NAIL 4
+      // nail 4
       ellipse(610, 300, 40, 70);
 
-      // NAIL 5
+      // nail 5
       ellipse(670, 340, 40, 70);
 
+      // ---------------- BOTTLES ----------------
 
-      //bottle image
+      image(redBottle, 180, 620, 100, 130);
 
-      image(redBottle, 180, 620, 90, 120);
+      image(blueBottle, 340, 620, 100, 130);
 
-      image(blueBottle, 340, 620, 90, 120);
+      image(greenBottle, 500, 620, 100, 130);
 
-      image(greenBottle, 500, 620, 90, 120);
+      image(yellowBottle, 660, 620, 100, 130);
 
-      image(yellowBottle, 660, 620, 90, 120);
+      image(purpleBottle, 820, 620, 100, 130);
 
-      image(purpleBottle, 820, 620, 90, 120);
+      image(pinkBottle, 980, 620, 100, 130);
+    }
+  }
+}
 
-      image(pinkBottle, 980, 620, 90, 120);
+
+// ---------------- MOUSE PRESSED ----------------
+
+void mousePressed()
+{
+  // ---------------- HANDS BUTTON ----------------
+
+  if (salonChoice.equals(""))
+  {
+    if (mouseX > 170 && mouseX < 470 &&
+        mouseY > 145 && mouseY < 495)
+    {
+      salonChoice = "hands";
+    }
+
+    // ---------------- FEET BUTTON ----------------
+
+    if (mouseX > 730 && mouseX < 1030 &&
+        mouseY > 145 && mouseY < 495)
+    {
+      salonChoice = "feet";
+    }
+  }
+
+  // ---------------- NAIL POLISH COLORS ----------------
+
+  if (clipped && filed)
+  {
+    // red
+    if (dist(mouseX, mouseY, 180, 620) < 60)
+    {
+      nailColor = color(255, 0, 0);
+    }
+
+    // blue
+    if (dist(mouseX, mouseY, 340, 620) < 60)
+    {
+      nailColor = color(0, 100, 255);
+    }
+
+    // green
+    if (dist(mouseX, mouseY, 500, 620) < 60)
+    {
+      nailColor = color(0, 200, 100);
+    }
+
+    // yellow
+    if (dist(mouseX, mouseY, 660, 620) < 60)
+    {
+      nailColor = color(255, 230, 0);
+    }
+
+    // purple
+    if (dist(mouseX, mouseY, 820, 620) < 60)
+    {
+      nailColor = color(170, 0, 255);
+    }
+
+    // pink
+    if (dist(mouseX, mouseY, 980, 620) < 60)
+    {
+      nailColor = color(255, 100, 180);
     }
   }
 }
