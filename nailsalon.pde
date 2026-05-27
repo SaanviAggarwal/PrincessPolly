@@ -261,7 +261,8 @@ void mousePressed()
   }
 
   // NAIL POLISH COLORS 
-
+// dist is for distance to check where the user is clicking 
+//https://processing.org/reference/dist_.html
   if (clipped && filed)
   {
     // red
