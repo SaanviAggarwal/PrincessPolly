@@ -47,7 +47,19 @@ void setup()
   bedroomImg = loadImage("castle.png");
   carWashImg = loadImage("carWash1.png");
   airportImg = loadImage("airport.png");
-  carWashBackground = loadImage("");
+  carWashBackground = loadImage("blackBackground.png");
+  handsImg = loadImage("hands.png");
+  feetImg = loadImage("feet.png");
+
+  nailClipperImg = loadImage("nailClipper.png");
+  nailFileImg = loadImage("nailFiler.png");
+  
+  redBottle = loadImage("redNailPolish.png");
+  blueBottle = loadImage("blueBottle.png");
+  greenBottle = loadImage("greenNailPolish.png");
+  yellowBottle = loadImage("yellowNailPolish.png");
+  purpleBottle = loadImage("purpleBottle.png");
+  pinkBottle = loadImage("pinkBottle.png");
     
   drawMainPage();
 
@@ -180,13 +192,13 @@ void mousePressed()
   {
     println("Go to Profile Customization");
   }
- if (mouseX > 200 && mouseX < 400 && mouseY > 230 && mouseY < 450 )
+ if (mouseX > 100 && mouseX < 200 && mouseY > 105 && mouseY < 335 )
   {
   drawSalonPage();
   }
   
   //hands 
-  if (salonChoice.equals(""))
+  if (salonChoice.equals("hands"))
   {
     // hands
     if (mouseX > 170 && mouseX < 470 &&
@@ -268,7 +280,101 @@ void mousePressed()
   if (mouseX > 975 && mouseX < 1125 &&
       mouseY > 25 && mouseY < 75)
   {
-    println("Go Back Home");
+    drawMainPage();
+  }
+   //pick hands
+
+  if (salonChoice.equals(""))
+  {
+    if (mouseX > 170 && mouseX < 470 &&
+        mouseY > 75 && mouseY < 425)
+    {
+      salonChoice = "hands";
+
+      taskTimer = millis();
+    }
+
+  //pick feet
+
+    if (mouseX > 730 && mouseX < 1030 &&
+        mouseY > 75 && mouseY < 425)
+    {
+      salonChoice = "feet";
+
+      taskTimer = millis();
+    }
+  }
+
+ //start
+
+  if (clipped && !filed)
+  {
+    if (millis() - taskTimer > 5000)
+    {
+      taskTimer = millis();
+    }
+  }
+
+ //ploish colours
+
+  if (filed)
+  {
+    // RED
+    if (mouseX > 135 && mouseX < 225 &&
+        mouseY > 560 && mouseY < 680)
+    {
+      nailColor = color(255, 0, 0);
+    }
+
+    // BLUE
+    if (mouseX > 295 && mouseX < 385 &&
+        mouseY > 560 && mouseY < 680)
+    {
+      nailColor = color(0, 100, 255);
+    }
+
+    // GREEN
+    if (mouseX > 455 && mouseX < 545 &&
+        mouseY > 560 && mouseY < 680)
+    {
+      nailColor = color(0, 255, 100);
+    }
+
+    // YELLOW
+    if (mouseX > 615 && mouseX < 705 &&
+        mouseY > 560 && mouseY < 680)
+    {
+      nailColor = color(255, 255, 0);
+    }
+
+    // PURPLE
+    if (mouseX > 775 && mouseX < 865 &&
+        mouseY > 560 && mouseY < 680)
+    {
+      nailColor = color(180, 0, 255);
+    }
+
+    // PINK
+    if (mouseX > 935 && mouseX < 1025 &&
+        mouseY > 560 && mouseY < 680)
+    {
+      nailColor = color(255, 100, 200);
+    }
+  }
+
+  //home
+  if (mouseX > 975 && mouseX < 1125 &&
+      mouseY > 25 && mouseY < 75)
+  {
+    println("GO HOME");
+
+    salonChoice = "";
+
+    clipped = false;
+    filed = false;
+
+    clipMoney = false;
+    fileMoney = false;
   }
 }
 
