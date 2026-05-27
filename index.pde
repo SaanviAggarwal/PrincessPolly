@@ -391,3 +391,7 @@ boolean overButton(int x, int y)
 
   return false;
 }
+
+Make sure that you can click the hands and feet option for the nail salon. 
+
+
