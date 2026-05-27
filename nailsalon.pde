@@ -1,4 +1,4 @@
-// ---------------- SALON VARIABLES ----------------
+// SALON VARIABLES 
 
 // choice
 String salonChoice = "";
@@ -15,16 +15,16 @@ int fileTimer = 0;
 boolean clippingStarted = false;
 boolean filingStarted = false;
 
-// money reward
+// money 
 boolean clipMoney = false;
 boolean fileMoney = false;
 
 // nail color
 color nailColor = color(255, 150, 200);
 
-// ---------------- IMAGES ----------------
+//  IMAGES 
 
-// upload your own later
+
 
 PImage handsImg;
 PImage feetImg;
@@ -41,7 +41,7 @@ PImage purpleBottle;
 PImage pinkBottle;
 
 
-// ---------------- DRAW SALON PAGE ----------------
+//  DRAW 
 
 void drawSalonPage()
 {
@@ -70,7 +70,7 @@ void drawSalonPage()
   fill(0);
   text("HOME", 1050, 50);
 
-  // ---------------- CHOOSE HANDS OR FEET ----------------
+  //CHOOSE HANDS OR FEET
 
   if (salonChoice.equals(""))
   {
@@ -97,11 +97,11 @@ void drawSalonPage()
     text("Click To Choose!", width/2, 620);
   }
 
-  // ---------------- GAME START ----------------
+  //  GAME START
 
   else
   {
-    // ---------------- SHOW HANDS / FEET IMAGE ----------------
+    //IMAGE
 
     if (salonChoice.equals("hands"))
     {
@@ -113,7 +113,7 @@ void drawSalonPage()
       image(feetImg, width/2, 320, 500, 350);
     }
 
-    // ---------------- CLIP TASK ----------------
+    //  CLIP TASK 
 
     if (!clipped)
     {
@@ -152,7 +152,7 @@ void drawSalonPage()
       }
     }
 
-    // ---------------- FILE TASK ----------------
+    //  FILE TASK 
 
     else if (!filed)
     {
@@ -191,7 +191,7 @@ void drawSalonPage()
       }
     }
 
-    // ---------------- PAINT NAILS ----------------
+    // PAINT NAILS 
 
     else
     {
@@ -200,7 +200,7 @@ void drawSalonPage()
 
       text("PAINT THE NAILS!", width/2, 80);
 
-      // ---------------- NAILS ----------------
+      //  NAILS 
 
       fill(nailColor);
 
@@ -219,7 +219,7 @@ void drawSalonPage()
       // nail 5
       ellipse(670, 340, 40, 70);
 
-      // ---------------- BOTTLES ----------------
+      //  BOTTLES 
 
       image(redBottle, 180, 620, 100, 130);
 
@@ -237,11 +237,11 @@ void drawSalonPage()
 }
 
 
-// ---------------- MOUSE PRESSED ----------------
+// MOUSE PRESSED 
 
 void mousePressed()
 {
-  // ---------------- HANDS BUTTON ----------------
+  // HANDS BUTTON
 
   if (salonChoice.equals(""))
   {
@@ -251,7 +251,7 @@ void mousePressed()
       salonChoice = "hands";
     }
 
-    // ---------------- FEET BUTTON ----------------
+    // FEET BUTTON
 
     if (mouseX > 730 && mouseX < 1030 &&
         mouseY > 145 && mouseY < 495)
@@ -260,7 +260,7 @@ void mousePressed()
     }
   }
 
-  // ---------------- NAIL POLISH COLORS ----------------
+  // NAIL POLISH COLORS 
 
   if (clipped && filed)
   {
