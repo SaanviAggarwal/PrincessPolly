@@ -284,6 +284,9 @@ void mousePressed()
   {
     drawMainPage();
   }
+ if (mouseX > ((width/2)-100) && mouseX < ((width/2)+100) && mouseY > 590 && mouseY < 650){
+  petPage.equals("items");
+}
   petShopMousePressed();
 }
 
