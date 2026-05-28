@@ -392,6 +392,6 @@ boolean overButton(int x, int y)
   return false;
 }
 
-Make sure that you can click the hands and feet option for the nail salon. 
+// the clipper and file need to move & we need to be able to click the hands and feet button & the nail polish colors don't work 
 
 
